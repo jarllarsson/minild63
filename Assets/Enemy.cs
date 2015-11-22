@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour {
 	public float radius = 0.5f;
 	public int damageToPlayer = 1;
 
-	private readonly float zDeathLimit = -15.0f;
+	private readonly float zDeathLimit = -120.0f;
     public int killScore = 1;
 
 	private PlayerScript[] playerReferences;
