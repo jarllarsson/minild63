@@ -12,7 +12,8 @@ public class JoystickChecker : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        updateList();   
+        updateList();
+        updatePlayer();
 	}
 	
 	// Update is called once per frame
@@ -23,23 +24,27 @@ public class JoystickChecker : MonoBehaviour
         {
             joystickCheckerTimer = 0.0f;
             updateList();
-            if (joysticks.Length>1 && joysticks[1].Length > 0)
-            {
-                if (!secondPlayerToHideWhenNoController.isLoggedIn())
-                {
-                    secondPlayerToHideWhenNoController.Login();
-                }
-            }
-            else
-            {
-                if (secondPlayerToHideWhenNoController.isLoggedIn())
-                {
-                    secondPlayerToHideWhenNoController.Logout();
-                }
-                
-            }
+            updatePlayer();
         }
 	}
+
+    void updatePlayer()
+    {
+        if (joysticks.Length > 1 && joysticks[1].Length > 0)
+        {
+            if (!secondPlayerToHideWhenNoController.isLoggedIn())
+            {
+                secondPlayerToHideWhenNoController.Login();
+            }
+        }
+        else
+        {
+            if (secondPlayerToHideWhenNoController.isLoggedIn())
+            {
+                secondPlayerToHideWhenNoController.Logout();
+            }
+        }
+    }
 
     void updateList()
     {

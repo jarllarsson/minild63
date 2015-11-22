@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour
     private Renderer m_renderer;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         m_renderer = transform.GetComponent<Renderer>();
 	}
@@ -24,14 +24,20 @@ public class PlayerScript : MonoBehaviour
 
     public void Logout()
     {
-        m_renderer.enabled = false;
-        m_loggedIn = false;
+        if (m_renderer)
+        {
+            m_renderer.enabled = false;
+            m_loggedIn = false;
+        }
     }
 
     public void Login()
     {
-        m_renderer.enabled = true;
-        m_loggedIn = true;
+        if (m_renderer)
+        {
+            m_renderer.enabled = true;
+            m_loggedIn = true;
+        }
     }
 
     public bool isLoggedIn()
