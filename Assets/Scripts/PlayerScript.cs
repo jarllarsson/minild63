@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour
@@ -15,6 +15,16 @@ public class PlayerScript : MonoBehaviour
 
     public AudioSource sndSource;
     public AudioClip bulletSound;
+	
+	private enum PlayerState {
+		Normal,
+		Damaged
+	}
+	public float m_radius = 0.5f;
+	public float m_blinkTime = 1.5f;
+	public int m_health = 10;
+	private float m_blinkTimer = 0;
+	private PlayerState m_playerState;
 
     public int m_score = 0;
 
@@ -40,7 +50,16 @@ public class PlayerScript : MonoBehaviour
                     Fire();
                 }
             }
-            m_fireCooldownTimer -= Time.deltaTime;
+			m_fireCooldownTimer -= Time.deltaTime;
+
+			if (m_playerState == PlayerState.Damaged)
+			{
+				m_blinkTimer += Time.deltaTime;
+				if (m_blinkTimer >= m_blinkTime)
+				{
+					m_playerState = PlayerState.Normal;
+				}
+			}
         }
 	}
 
@@ -78,6 +97,15 @@ public class PlayerScript : MonoBehaviour
     {
         return m_loggedIn;
     }
+
+	public void Damage(int value)
+	{
+		if (m_playerState == PlayerState.Damaged)
+		{
+			m_health -= value;
+		}
+		m_playerState = PlayerState.Damaged;
+	}
 
     public void Score(int p_score)
     {

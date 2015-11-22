@@ -56,7 +56,7 @@ public class Laser : MonoBehaviour {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             if (enemyScript)
             {
-                float enemRadius = 1.0f;
+                float enemRadius = enemyScript.radius;
                 if (Vector3.SqrMagnitude(transform.position-enemy.transform.position) < (m_radius+enemRadius)*(m_radius+enemRadius))
                 {
                     if (m_owner) m_owner.Score(enemyScript.killScore);

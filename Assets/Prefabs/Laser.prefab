@@ -88,14 +88,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 30
-  m_ownerId: 0
+  m_damageValue: 1
+  m_owner: {fileID: 0}
+  m_radius: 0
+  m_hitEffect: {fileID: 409114, guid: 9abf1d3831228cc4fba2dc632cd33b8b, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_hitEffect
+      value: 
+      objectReference: {fileID: 409114, guid: 9abf1d3831228cc4fba2dc632cd33b8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114682}
