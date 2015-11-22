@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour
 {
     public int m_playerNumber = 0;
+    public float m_speed = 50.0f;
 
 	// Use this for initialization
 	void Start ()
@@ -15,6 +16,6 @@ public class PlayerScript : MonoBehaviour
 	void Update ()
     {
         Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
-        transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime;
+        transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime * m_speed;
 	}
 }
