@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour
@@ -7,14 +7,8 @@ public class PlayerScript : MonoBehaviour
     public float m_speed = 50.0f;
     private bool m_loggedIn = true;
 
+<<<<<<< HEAD
     private Renderer m_renderer;
-
-    public Transform m_bulletPrefab;
-    public float m_fireCooldownTime = 0.3f;
-    public float m_fireCooldownTimer = 0.0f;
-
-    public AudioSource sndSource;
-    public AudioClip bulletSound;
 	
 	private enum PlayerState {
 		Normal,
@@ -25,6 +19,16 @@ public class PlayerScript : MonoBehaviour
 	public int m_health = 10;
 	private float m_blinkTimer = 0;
 	private PlayerState m_playerState;
+=======
+    private Renderer m_renderer;
+
+    public Transform m_bulletPrefab;
+    public float m_fireCooldownTime = 0.3f;
+    public float m_fireCooldownTimer = 0.0f;
+
+    public AudioSource sndSource;
+    public AudioClip bulletSound;
+>>>>>>> 877a784fbb967768ccdf8bdc8b70dad2492ce5e2
 
 	// Use this for initialization
 	void Awake ()
@@ -35,6 +39,19 @@ public class PlayerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+<<<<<<< HEAD
+        Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
+		transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime * m_speed;
+		
+		if (m_playerState == PlayerState.Damaged)
+		{
+			m_blinkTimer += Time.deltaTime;
+			if (m_blinkTimer >= m_blinkTime)
+			{
+				m_playerState = PlayerState.Normal;
+			}
+		}
+=======
         if (isLoggedIn())
         {
             Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
@@ -48,17 +65,9 @@ public class PlayerScript : MonoBehaviour
                     Fire();
                 }
             }
-			m_fireCooldownTimer -= Time.deltaTime;
-
-			if (m_playerState == PlayerState.Damaged)
-			{
-				m_blinkTimer += Time.deltaTime;
-				if (m_blinkTimer >= m_blinkTime)
-				{
-					m_playerState = PlayerState.Normal;
-				}
-			}
+            m_fireCooldownTimer -= Time.deltaTime;
         }
+>>>>>>> 877a784fbb967768ccdf8bdc8b70dad2492ce5e2
 	}
 
     private void Fire()
