@@ -111,9 +111,4 @@ public class PlayerScript : MonoBehaviour
 		}
 		m_playerState = PlayerState.Damaged;
 	}
-
-    public void Score(int p_score)
-    {
-        m_score += p_score;
-    }
 }

@@ -59,7 +59,7 @@ public class Laser : MonoBehaviour {
                 float enemRadius = enemyScript.radius;
                 if (Vector3.SqrMagnitude(transform.position-enemy.transform.position) < (m_radius+enemRadius)*(m_radius+enemRadius))
                 {
-                    if (m_owner) m_owner.Score(enemyScript.killScore);
+					if (m_owner) ScoreManager.addScore(m_owner, enemyScript.killScore);
                     Instantiate(m_hitEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                     enemyScript.Kill(Enemy.KillReason.Player, m_damageValue);
