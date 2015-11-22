@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 128014297}
   - 114: {fileID: 128014298}
-  - 114: {fileID: 128014299}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -130,20 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystickCheckerTime: 1
   secondPlayerToHideWhenNoController: {fileID: 1306216771}
---- !u!114 &128014299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 128014296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0841b3d8437e9684092e84b1ec64f052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_players:
-  - {fileID: 605043174}
-  - {fileID: 1306216771}
 --- !u!4 &131391195 stripped
 Transform:
   m_PrefabParentObject: {fileID: 463988, guid: f76eda793e8543b4ab7f18a6ef2d4f90, type: 2}
@@ -206,12 +191,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 463988, guid: f76eda793e8543b4ab7f18a6ef2d4f90, type: 2}
   m_PrefabInternal: {fileID: 413092143}
---- !u!114 &605043174 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11403716, guid: f76eda793e8543b4ab7f18a6ef2d4f90,
-    type: 2}
-  m_PrefabInternal: {fileID: 2004747126}
-  m_Script: {fileID: 11500000, guid: 79ed30ec967b0924690bb9cae7854d0e, type: 3}
 --- !u!1 &698297624
 GameObject:
   m_ObjectHideFlags: 0
