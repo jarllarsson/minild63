@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class JoystickChecker : MonoBehaviour 
 {
     public float joystickCheckerTime = 1.0f;
     private float joystickCheckerTimer = 0.0f;
 
-    private string[] joysticks;
+    private List<string> joysticks = new List<string>();
 
     public PlayerScript secondPlayerToHideWhenNoController;
 
@@ -30,7 +31,7 @@ public class JoystickChecker : MonoBehaviour
 
     void updatePlayer()
     {
-        if (joysticks.Length > 1 && joysticks[1].Length > 0)
+        if (joysticks.Count > 1 && joysticks[1].Length > 0)
         {
             if (!secondPlayerToHideWhenNoController.isLoggedIn())
             {
@@ -48,7 +49,7 @@ public class JoystickChecker : MonoBehaviour
 
     void updateList()
     {
-        joysticks = null;
-        joysticks = Input.GetJoystickNames();
+        joysticks.Clear();
+        joysticks = new List<string>(Input.GetJoystickNames());
     }
 }
