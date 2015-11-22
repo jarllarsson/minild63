@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour {
 	public MovementPattern movementPattern;
 
 	private readonly float zDeathLimit = -15.0f;
+    public int killScore = 1;
 
 	// Use this for initialization
 	void Start () {

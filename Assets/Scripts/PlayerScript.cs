@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour
     public AudioSource sndSource;
     public AudioClip bulletSound;
 
+    public int m_score = 0;
+
 	// Use this for initialization
 	void Awake ()
     {
@@ -44,12 +46,12 @@ public class PlayerScript : MonoBehaviour
 
     private void Fire()
     {
-        GameObject obj = Instantiate(m_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+        Transform obj = Instantiate(m_bulletPrefab, transform.position, Quaternion.identity) as Transform;
         if (obj)
         {
             Laser laserObj = obj.GetComponent<Laser>();
             if (laserObj)
-                laserObj.m_ownerId = m_playerNumber;
+                laserObj.m_owner = this;
         }
         sndSource.PlayOneShot(bulletSound);
     }
@@ -75,5 +77,10 @@ public class PlayerScript : MonoBehaviour
     public bool isLoggedIn()
     {
         return m_loggedIn;
+    }
+
+    public void Score(int p_score)
+    {
+        m_score += p_score;
     }
 }
