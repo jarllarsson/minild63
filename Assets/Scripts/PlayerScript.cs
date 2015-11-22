@@ -37,7 +37,7 @@ public class PlayerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (isLoggedIn())
+        if (isLoggedIn() && isAlive())
         {
             Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
             transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime * m_speed;
@@ -98,9 +98,14 @@ public class PlayerScript : MonoBehaviour
         return m_loggedIn;
     }
 
+	public bool isAlive()
+	{
+		return m_health > 0;
+	}
+
 	public void Damage(int value)
 	{
-		if (m_playerState == PlayerState.Damaged)
+		if (m_playerState == PlayerState.Normal)
 		{
 			m_health -= value;
 		}
