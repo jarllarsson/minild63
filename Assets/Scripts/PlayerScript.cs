@@ -9,6 +9,13 @@ public class PlayerScript : MonoBehaviour
 
     private Renderer m_renderer;
 
+    public Transform m_bulletPrefab;
+    public float m_fireCooldownTime = 0.3f;
+    public float m_fireCooldownTimer = 0.0f;
+
+    public AudioSource sndSource;
+    public AudioClip bulletSound;
+
 	// Use this for initialization
 	void Awake ()
     {
@@ -18,9 +25,34 @@ public class PlayerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
-        transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime * m_speed;
+        if (isLoggedIn())
+        {
+            Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal" + m_playerNumber), Input.GetAxis("Vertical" + m_playerNumber));
+            transform.localPosition += new Vector3(inputMovement.x, inputMovement.y, 0.0f) * Time.deltaTime * m_speed;
+
+            if (m_fireCooldownTimer <= 0.0f)
+            {
+                if (Input.GetAxis("Fire" + m_playerNumber) > 0.0f)
+                {
+                    m_fireCooldownTimer = m_fireCooldownTime;
+                    Fire();
+                }
+            }
+            m_fireCooldownTimer -= Time.deltaTime;
+        }
 	}
+
+    private void Fire()
+    {
+        GameObject obj = Instantiate(m_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+        if (obj)
+        {
+            Laser laserObj = obj.GetComponent<Laser>();
+            if (laserObj)
+                laserObj.m_ownerId = m_playerNumber;
+        }
+        sndSource.PlayOneShot(bulletSound);
+    }
 
     public void Logout()
     {
