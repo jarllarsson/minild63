@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
     {
-        m_renderer = transform.GetComponent<Renderer>();
+        m_renderer = transform.GetComponentInChildren<Renderer>();
 	}
 	
 	// Update is called once per frame
