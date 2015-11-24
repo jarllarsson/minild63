@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour {
 	public float height = 10.0f;
 
 	private float timer = 0.0f;
-	private int index = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +21,7 @@ public class Spawner : MonoBehaviour {
 		if (timer >= spawnInterval)
 		{
 			timer = 0.0f;
-			GameObject.Instantiate(spawnList[index], transform.position + RandomPlane(width, height), Quaternion.identity);
-			index++;
-			if (index >= spawnList.Length)
-			{
-				index = 0;
-			}
+			GameObject.Instantiate(spawnList[Random.Range(0, spawnList.Length)], transform.position + RandomPlane(width, height), Quaternion.identity);
 		}
 	}
 
