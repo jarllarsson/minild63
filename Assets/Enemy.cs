@@ -4,7 +4,8 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	
 	public enum MovementPattern {
-		Straight
+		Straight,
+		Spiraling
 	}
 	public enum KillReason {
 		HitWall,
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour {
 
 	private readonly float zDeathLimit = -120.0f;
     public int killScore = 1;
+	private Vector3 startPos;
+	private float timeTravelled = 0.0f;
 
 	private PlayerScript[] playerReferences;
 
@@ -32,6 +35,7 @@ public class Enemy : MonoBehaviour {
 			playerReferences[index] = obj.GetComponent<PlayerScript>();
 			index++;
 		}
+		startPos = transform.localPosition;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +43,13 @@ public class Enemy : MonoBehaviour {
 		if (movementPattern == MovementPattern.Straight)
 		{
 			transform.position = transform.position + new Vector3(0, 0, -movementSpeed * Time.deltaTime);
+		}
+		else if(movementPattern == MovementPattern.Spiraling)
+		{
+			timeTravelled += Time.deltaTime;
+			Vector3 center = startPos + new Vector3(0, 5.0f, 0);
+			Vector3 newPos = center + new Vector3(Mathf.Sin(timeTravelled) * 4.0f, - Mathf.Cos(timeTravelled) * 2.5f, - movementSpeed * timeTravelled);
+			transform.localPosition = newPos;
 		}
 
 		if (transform.position.z <= zDeathLimit)
